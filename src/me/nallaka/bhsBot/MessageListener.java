@@ -1,9 +1,9 @@
-package me.nallaka.inixBot;
+package me.nallaka.bhsBot;
 
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
-import static me.nallaka.inixBot.BotMain.commands;
+import static me.nallaka.bhsBot.BotMain.commands;
 
 public class MessageListener extends ListenerAdapter {
 

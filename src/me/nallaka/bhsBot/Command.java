@@ -1,4 +1,4 @@
-package me.nallaka.inixBot;
+package me.nallaka.bhsBot;
 
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
