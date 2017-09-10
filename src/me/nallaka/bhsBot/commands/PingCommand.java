@@ -6,7 +6,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 public class PingCommand implements Command {
     @Override
     public boolean called(MessageReceivedEvent event, String[] args) {
-        return false;
+        return true;
     }
 
     @Override
