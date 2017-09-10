@@ -16,6 +16,6 @@ public class PingCommand implements Command {
 
     @Override
     public void executed(MessageReceivedEvent event, String[] args) {
-
+        System.out.println("Ping Command executed by: " + event.getAuthor().getName());
     }
 }

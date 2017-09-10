@@ -12,14 +12,9 @@ public class MessageListener extends ListenerAdapter {
         String beheadedCommand = event.getMessage().getContent().replaceFirst(".", "");
         String[] commandArgs = beheadedCommand.split(" ");
 
-        if (commands.containsKey(commandArgs[0].toLowerCase())) {
+        if (event.getAuthor().getJDA().getSelfUser() != event.getAuthor() && commands.containsKey(commandArgs[0].toLowerCase())) {
             commands.get(commandArgs[0]).runCommand(event, commandArgs);
+            commands.get(commandArgs[0]).executed(event, commandArgs);
         }
     }
-
-   /*
-    public  void helloCommand(MessageReceivedEvent event) {
-        String name = event.getAuthor().getName();
-        event.getTextChannel().sendMessage("Ey Yo " + name).queue();
-    }*/
 }

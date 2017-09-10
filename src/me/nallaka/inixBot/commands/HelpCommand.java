@@ -17,6 +17,6 @@ public class HelpCommand implements Command {
 
     @Override
     public void executed(MessageReceivedEvent event, String[] args) {
-
+        System.out.println("Help Command executed by: " + event.getAuthor().getName());
     }
 }

@@ -16,6 +16,6 @@ public class JoinClassCommand implements Command {
 
     @Override
     public void executed(MessageReceivedEvent event, String[] args) {
-
+        System.out.println("JoinClass Command executed by: " + event.getAuthor().getName());
     }
 }
