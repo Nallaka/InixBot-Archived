@@ -1,5 +1,6 @@
 package me.nallaka.inixBot;
 
+import me.nallaka.inixBot.commands.HelloCommand;
 import me.nallaka.inixBot.commands.HelpCommand;
 import me.nallaka.inixBot.commands.JoinClassCommand;
 import me.nallaka.inixBot.commands.PingCommand;
@@ -28,5 +29,6 @@ public class BotMain extends ListenerAdapter implements EventListener {
         commands.put("help", new HelpCommand());
         commands.put("ping", new PingCommand());
         commands.put("joinclass", new JoinClassCommand());
+        commands.put("hello", new HelloCommand());
     }
 }
