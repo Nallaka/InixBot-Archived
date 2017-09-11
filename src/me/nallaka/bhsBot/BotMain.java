@@ -1,9 +1,6 @@
 package me.nallaka.bhsBot;
 
-import me.nallaka.bhsBot.commands.HelloCommand;
-import me.nallaka.bhsBot.commands.HelpCommand;
-import me.nallaka.bhsBot.commands.JoinClassCommand;
-import me.nallaka.bhsBot.commands.PingCommand;
+import me.nallaka.bhsBot.commands.*;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;

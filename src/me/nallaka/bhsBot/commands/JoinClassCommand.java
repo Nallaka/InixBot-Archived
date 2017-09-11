@@ -14,8 +14,9 @@ public class JoinClassCommand implements Command {
         if (args.length < 2) {
             event.getTextChannel().sendMessage("USAGE: .joinclass [Class]");
         } else {
-            /*event.getGuild().getRole
-            event.getMember().getRoles().add()*/
+            if (!event.getMessage().getMentionedRoles().isEmpty()) {
+                event.getAuthor().getJDA().getRoles().add(event.getMessage().getMentionedRoles().get(1));
+            }
         }
     }
 
