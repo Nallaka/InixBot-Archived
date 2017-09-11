@@ -11,7 +11,7 @@ public class PingCommand implements Command {
 
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
-        event.getTextChannel().sendMessage(String.valueOf(event.getAuthor().getJDA().getPing()) + "ms").queue();
+        event.getTextChannel().sendMessage(String.valueOf("Pong!: " + event.getAuthor().getJDA().getPing()) + "ms").queue();
     }
 
     @Override
