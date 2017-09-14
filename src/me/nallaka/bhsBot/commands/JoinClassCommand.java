@@ -11,12 +11,10 @@ public class JoinClassCommand implements Command {
 
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
-        if (args.length < 2) {
-            event.getTextChannel().sendMessage("USAGE: .joinclass [Class]");
-        } else {
-            if (!event.getMessage().getMentionedRoles().isEmpty()) {
-                event.getAuthor().getJDA().getRoles().add(event.getMessage().getMentionedRoles().get(1));
-            }
+        if (!event.getMessage().getMentionedRoles().isEmpty()/* && event.getAuthor().getJDA().getRoles().contains()*/) {
+                event.getAuthor().getJDA().getRoles().add(event.getMessage().getMentionedRoles().get(0));
+        }else {
+            event.getTextChannel().sendMessage("USAGE: Class [Class] <Another Class>");
         }
     }
 
