@@ -10,7 +10,7 @@ public class MessageListener extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         String beheadedCommand = event.getMessage().getContent().replaceFirst(".", "");
-        String[] commandArgs = beheadedCommand.split(" ");
+        String[] commandArgs = beheadedCommand.split("\\s");
 
         if (event.getAuthor().getJDA().getSelfUser() != event.getAuthor() && commands.containsKey(commandArgs[0].toLowerCase())) {
             commands.get(commandArgs[0]).runCommand(event, commandArgs);

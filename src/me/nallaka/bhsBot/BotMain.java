@@ -1,6 +1,7 @@
 package me.nallaka.bhsBot;
 
 import me.nallaka.bhsBot.commands.*;
+import me.nallaka.bhsBot.commands.Help.HelpCommand;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
