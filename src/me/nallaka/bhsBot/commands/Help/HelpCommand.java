@@ -1,7 +1,11 @@
 package me.nallaka.bhsBot.commands.Help;
 
 import me.nallaka.bhsBot.Command;
+import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+
+import java.awt.*;
 
 public class HelpCommand implements Command {
 
@@ -12,10 +16,11 @@ public class HelpCommand implements Command {
 
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
-        event.getTextChannel().sendMessage("Can't really do much right now. Maybe come back later?").queue();
-        if (args.length >= 2) {
-            String commandArg1 = args[1];
-        }
+        EmbedBuilder messageBuilder = new EmbedBuilder().setTitle("Help Commands")
+                                                        .setDescription("All the help commands")
+                                                        .setColor(Color.RED)
+                                                        .addField("Empty", "I'm pretty empty. Come back later when I can do more stuff!", true);
+        event.getTextChannel().sendMessage(messageBuilder.build()).queue();
     }
 
     @Override

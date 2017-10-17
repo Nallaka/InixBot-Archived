@@ -3,18 +3,18 @@ package me.nallaka.bhsBot;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommandMap {
+class CommandMap {
     private static Map<String, Command> commands = new HashMap<>();
 
-    public void setCommand(String commandString, Command command) {
+    void setCommand(String commandString, Command command) {
         commands.put(commandString, command);
     }
 
-    public Command getCommand(String commandString) {
+    Command getCommand(String commandString) {
         return commands.get(commandString);
     }
 
-    public boolean containsKey(String key) {
-        if (commands.containsKey(key)) return true; else return false;
+    boolean containsKey(String key) {
+        return commands.containsKey(key);
     }
 }

@@ -1,6 +1,8 @@
 package me.nallaka.bhsBot.commands;
 
 import me.nallaka.bhsBot.Command;
+import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class PingCommand implements Command {
@@ -11,7 +13,9 @@ public class PingCommand implements Command {
 
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
-        event.getTextChannel().sendMessage(String.valueOf("Pong!: " + event.getAuthor().getJDA().getPing()) + "ms").queue();
+        EmbedBuilder messageBuilder = new EmbedBuilder().setTitle("Ping!")
+                                                        .addField(new MessageEmbed.Field("Latency", Long.toString(event.getAuthor().getJDA().getPing()), true));
+        event.getTextChannel().sendMessage(messageBuilder.build()).queue();
     }
 
     @Override

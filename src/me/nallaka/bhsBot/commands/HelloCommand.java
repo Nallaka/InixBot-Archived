@@ -1,6 +1,7 @@
 package me.nallaka.bhsBot.commands;
 
 import me.nallaka.bhsBot.Command;
+import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class HelloCommand implements Command {
@@ -12,7 +13,8 @@ public class HelloCommand implements Command {
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
         String name = event.getAuthor().getName();
-        event.getTextChannel().sendMessage("Ey Yo " + name).queue();
+        EmbedBuilder messageBuilder = new EmbedBuilder().addField("Hello!", name, true);
+        event.getTextChannel().sendMessage(messageBuilder.build());
     }
 
     @Override
