@@ -13,4 +13,8 @@ public class CommandMap {
     public Command getCommand(String commandString) {
         return commands.get(commandString);
     }
+
+    public boolean containsKey(String key) {
+        if (commands.containsKey(key)) return true; else return false;
+    }
 }

@@ -15,8 +15,6 @@ import java.util.Map;
 
 public class BotMain extends ListenerAdapter implements EventListener {
 
-    public static Map<String, Command> commands = new HashMap<>();
-
     public static void main(String[] args) throws LoginException, InterruptedException, RateLimitedException {
         //Bot Setup
         String botToken = "MzU2MjY5MTQ5NjAyOTcxNjQ5.DJY5Cg.OQONQOwYNjvVaQdjBsGXLf5JMmk";
@@ -24,9 +22,9 @@ public class BotMain extends ListenerAdapter implements EventListener {
         jda.addEventListener(new MessageListener());
 
         //Commands HashMap Setup
-        commands.put("help", new HelpCommand());
-        commands.put("ping", new PingCommand());
-        commands.put("joinclass", new JoinClassCommand());
-        commands.put("hello", new HelloCommand());
+        CommandMap commands = new CommandMap();
+        commands.setCommand("help", new HelpCommand());
+        commands.setCommand("ping", new PingCommand());
+        commands.setCommand("hello", new HelloCommand());
     }
 }
