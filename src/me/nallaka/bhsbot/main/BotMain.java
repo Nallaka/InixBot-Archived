@@ -1,7 +1,10 @@
-package me.nallaka.bhsBot;
+package me.nallaka.bhsbot.main;
 
-import me.nallaka.bhsBot.commands.*;
-import me.nallaka.bhsBot.commands.Help.HelpCommand;
+import me.nallaka.bhsbot.commands.help.HelloHelpCommand;
+import me.nallaka.bhsbot.commands.help.PingHelpCommand;
+import me.nallaka.bhsbot.maps.*;
+import me.nallaka.bhsbot.commands.*;
+import me.nallaka.bhsbot.commands.help.HelpCommand;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -10,8 +13,6 @@ import net.dv8tion.jda.core.hooks.EventListener;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 import javax.security.auth.login.LoginException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class BotMain extends ListenerAdapter implements EventListener {
 
@@ -22,9 +23,14 @@ public class BotMain extends ListenerAdapter implements EventListener {
         jda.addEventListener(new MessageListener());
 
         //Commands HashMap Setup
-        CommandMap commands = new CommandMap();
-        commands.setCommand("help", new HelpCommand());
-        commands.setCommand("ping", new PingCommand());
-        commands.setCommand("hello", new HelloCommand());
+        CommandMaps commandMap = new CommandMaps();
+        HelpCommandMap helpCommandMap = new HelpCommandMap();
+
+        commandMap.setCommand("help", new HelpCommand());
+        commandMap.setCommand("ping", new PingCommand());
+        commandMap.setCommand("hello", new HelloCommand());
+
+        helpCommandMap.setHelpCommand("ping", new PingHelpCommand());
+        helpCommandMap.setHelpCommand("hello", new HelloHelpCommand());
     }
 }

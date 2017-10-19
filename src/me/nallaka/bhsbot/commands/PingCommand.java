@@ -1,6 +1,6 @@
-package me.nallaka.bhsBot.commands;
+package me.nallaka.bhsbot.commands;
 
-import me.nallaka.bhsBot.Command;
+import me.nallaka.bhsbot.main.Command;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
