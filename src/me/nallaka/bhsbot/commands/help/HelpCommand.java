@@ -17,16 +17,15 @@ public class HelpCommand implements Command {
 
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
-        EmbedBuilder messageBuilder = new EmbedBuilder().setTitle("Help")
+        emebeddedMessageBuilder.setTitle("Help")
                 .setDescription("All the available commands")
                 .setColor(Color.RED)
                 .addField("Empty", "I'm pretty empty. Come back later when I can do more stuff!", true);
-        event.getTextChannel().sendMessage(messageBuilder.build()).queue();
+        event.getTextChannel().sendMessage(emebeddedMessageBuilder.build()).queue();
     }
-
 
     @Override
     public void executed(MessageReceivedEvent event, String[] args) {
-        System.out.println("help Command executed by: " + event.getAuthor().getName());
+        commandLogger.logCommand(event, args);
     }
 }

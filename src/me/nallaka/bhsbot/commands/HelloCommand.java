@@ -13,12 +13,12 @@ public class HelloCommand implements Command {
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
         String name = event.getAuthor().getName();
-        EmbedBuilder messageBuilder = new EmbedBuilder().addField("Hello!", name, true);
-        event.getTextChannel().sendMessage(messageBuilder.build()).queue();
+        emebeddedMessageBuilder.addField("Hello!", name, true);
+        event.getTextChannel().sendMessage(emebeddedMessageBuilder.build()).queue();
     }
 
     @Override
     public void executed(MessageReceivedEvent event, String[] args) {
-        System.out.println("Hello Command executed by: " + event.getAuthor().getName());
+        commandLogger.logCommand(event, args);
     }
 }

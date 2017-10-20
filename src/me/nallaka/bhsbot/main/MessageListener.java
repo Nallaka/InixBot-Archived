@@ -6,21 +6,15 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class MessageListener extends ListenerAdapter {
 
+    private CommandMaps commandMap = new CommandMaps();
+    private HelpCommandMap helpCommandMap = new HelpCommandMap();
+    private CommandHandler commandHandler = new CommandHandler();
+
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        CommandMaps commandMap = new CommandMaps();
-        HelpCommandMap helpCommandMap = new HelpCommandMap();
         String beheadedCommand = event.getMessage().getContent().replaceFirst(".", "").toLowerCase();
         String[] commandArgs = beheadedCommand.split("\\s");
 
-        if (event.getAuthor().getJDA().getSelfUser() != event.getAuthor() && commandMap.containsKey(commandArgs[0].toLowerCase()) && !commandArgs[0].equalsIgnoreCase("help")) {
-            commandMap.getCommand(commandArgs[0]).called(event, commandArgs);
-            commandMap.getCommand(commandArgs[0]).runCommand(event, commandArgs);
-            commandMap.getCommand(commandArgs[0]).executed(event, commandArgs);
-        } else if (event.getAuthor().getJDA().getSelfUser() != event.getAuthor() && helpCommandMap.containsHelpKey(commandArgs[1].toLowerCase()) && commandArgs[0].equalsIgnoreCase("help")) {
-            helpCommandMap.getHelpCommand(commandArgs[1]).called(event, commandArgs);
-            helpCommandMap.getHelpCommand(commandArgs[1]).runCommand(event, commandArgs);
-            helpCommandMap.getHelpCommand(commandArgs[1]).executed(event, commandArgs);
-        }
+        commandHandler.executeCommand(event, commandArgs);
     }
 }
