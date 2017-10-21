@@ -7,6 +7,8 @@
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/dictionaries
+src/me/nallaka/bhsbot/main/dataConfig.properties
+
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/
@@ -50,3 +52,6 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+.idea/
+BHS-Bot.iml
+src/me/nallaka/bhsbot/main/dataConfig.properties
