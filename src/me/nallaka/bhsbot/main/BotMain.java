@@ -13,14 +13,21 @@ import net.dv8tion.jda.core.hooks.EventListener;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 import javax.security.auth.login.LoginException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 public class BotMain extends ListenerAdapter implements EventListener {
 
-    public static void main(String[] args) throws LoginException, InterruptedException, RateLimitedException {
+    public static void main(String[] args) throws LoginException, InterruptedException, RateLimitedException, IOException {
         //Bot Setup
-        String botToken = "MzU2MjY5MTQ5NjAyOTcxNjQ5.DJY5Cg.OQONQOwYNjvVaQdjBsGXLf5JMmk";
+        Properties properties = new Properties();
+        InputStream inputStream = BotMain.class.getClassLoader().getResourceAsStream("me/nallaka/bhsbot/main/dataConfig.properties");
+        properties.load(inputStream);
+
+        String botToken = properties.getProperty("BOT_TOKEN");
         JDA jda = new JDABuilder(AccountType.BOT).setToken(botToken).buildBlocking();
-        jda.addEventListener(new MessageListener());
+        jda.addEventListener(new MessageHandler());
 
         //Commands HashMap Setup
         CommandMaps commandMap = new CommandMaps();

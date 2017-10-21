@@ -13,8 +13,9 @@ public class HelloCommand implements Command {
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
         String name = event.getAuthor().getName();
-        emebeddedMessageBuilder.addField("Hello!", name, true);
-        event.getTextChannel().sendMessage(emebeddedMessageBuilder.build()).queue();
+        embeddedMessageBuilder.setTitle("Hello!").setDescription(name);
+        event.getTextChannel().sendMessage(embeddedMessageBuilder.build()).queue();
+        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 
     @Override

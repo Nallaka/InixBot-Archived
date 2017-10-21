@@ -17,11 +17,11 @@ public class HelpCommand implements Command {
 
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
-        emebeddedMessageBuilder.setTitle("Help")
+        embeddedMessageBuilder.setTitle("Help")
                 .setDescription("All the available commands")
-                .setColor(Color.RED)
                 .addField("Empty", "I'm pretty empty. Come back later when I can do more stuff!", true);
-        event.getTextChannel().sendMessage(emebeddedMessageBuilder.build()).queue();
+        event.getTextChannel().sendMessage(embeddedMessageBuilder.build()).queue();
+        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 
     @Override

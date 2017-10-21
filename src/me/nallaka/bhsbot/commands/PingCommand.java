@@ -16,8 +16,9 @@ public class PingCommand implements Command {
 
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
-        emebeddedMessageBuilder.setTitle("Ping!").addField(new MessageEmbed.Field("Latency", Long.toString(event.getAuthor().getJDA().getPing()), true));
-        event.getTextChannel().sendMessage(emebeddedMessageBuilder.build()).queue();
+        embeddedMessageBuilder.addField(new MessageEmbed.Field("Latency:", Long.toString(event.getAuthor().getJDA().getPing()) + "ms", true));
+        event.getTextChannel().sendMessage(embeddedMessageBuilder.build()).queue();
+        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 
     @Override

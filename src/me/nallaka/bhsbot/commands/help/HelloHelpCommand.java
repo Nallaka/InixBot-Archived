@@ -14,11 +14,11 @@ public class HelloHelpCommand implements Command {
 
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
-        emebeddedMessageBuilder.setTitle("Hello Help")
+        embeddedMessageBuilder.setTitle("Hello Command")
                 .setDescription("Simply says hello!")
-                .setColor(Color.RED)
-                .addField("Usage", ".hello", true);
-        event.getTextChannel().sendMessage(emebeddedMessageBuilder.build()).queue();
+                .addField("Usage", "``.hello``", true);
+        event.getTextChannel().sendMessage(embeddedMessageBuilder.build()).queue();
+        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 
     @Override

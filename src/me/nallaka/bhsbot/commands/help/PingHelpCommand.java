@@ -14,11 +14,11 @@ public class PingHelpCommand implements Command {
 
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
-        emebeddedMessageBuilder.setTitle("Ping Command")
+        embeddedMessageBuilder.setTitle("Ping Command")
                 .setDescription("Returns Your Ping")
-                .setColor(Color.RED)
-                .addField("Usage", ".ping", true);
-        event.getTextChannel().sendMessage(emebeddedMessageBuilder.build()).queue();
+                .addField("Usage", "``.ping``", true);
+        event.getTextChannel().sendMessage(embeddedMessageBuilder.build()).queue();
+        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 
     @Override
