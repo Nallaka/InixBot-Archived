@@ -1,9 +1,8 @@
-package me.nallaka.bhsbot.main;
+package me.nallaka.inixbot.main;
 
-import me.nallaka.bhsbot.maps.CommandMaps;
-import me.nallaka.bhsbot.maps.HelpCommandMap;
+import me.nallaka.inixbot.maps.CommandMaps;
+import me.nallaka.inixbot.maps.HelpCommandMap;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import sun.misc.resources.Messages_de;
 
 class CommandHandler {
     private CommandMaps commandMap = new CommandMaps();
