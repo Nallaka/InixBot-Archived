@@ -1,6 +1,6 @@
-package me.nallaka.inixbot.main;
+package me.nallaka.bhsbot.main;
 
-import me.nallaka.inixbot.maps.*;
+import me.nallaka.bhsbot.maps.*;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;

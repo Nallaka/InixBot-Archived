@@ -1,9 +1,14 @@
-package me.nallaka.inixbot.commands;
+package me.nallaka.bhsbot.commands;
 
-import me.nallaka.inixbot.main.Command;
+import me.nallaka.bhsbot.main.Command;
+import me.nallaka.bhsbot.main.CommandLogger;
+import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class HelloCommand implements Command {
+public class PingCommand implements Command {
+    CommandLogger commandLogger = new CommandLogger();
+
     @Override
     public boolean called(MessageReceivedEvent event, String[] args) {
         return true;
@@ -11,8 +16,7 @@ public class HelloCommand implements Command {
 
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
-        String name = event.getAuthor().getName();
-        embeddedMessageBuilder.setTitle("Hello!").setDescription(name);
+        embeddedMessageBuilder.addField(new MessageEmbed.Field("Latency:", Long.toString(event.getAuthor().getJDA().getPing()) + "ms", true));
         event.getTextChannel().sendMessage(embeddedMessageBuilder.build()).queue();
         messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }

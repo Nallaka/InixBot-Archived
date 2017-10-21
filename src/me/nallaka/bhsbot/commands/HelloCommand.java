@@ -1,19 +1,19 @@
-package me.nallaka.inixbot.commands.help;
+package me.nallaka.bhsbot.commands;
 
-import me.nallaka.inixbot.main.Command;
+import me.nallaka.bhsbot.main.Command;
+import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class PingHelpCommand implements Command {
+public class HelloCommand implements Command {
     @Override
     public boolean called(MessageReceivedEvent event, String[] args) {
-        return false;
+        return true;
     }
 
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
-        embeddedMessageBuilder.setTitle("Ping Command")
-                .setDescription("Returns Your Ping")
-                .addField("Usage", "``.ping``", true);
+        String name = event.getAuthor().getName();
+        embeddedMessageBuilder.setTitle("Hello!").setDescription(name);
         event.getTextChannel().sendMessage(embeddedMessageBuilder.build()).queue();
         messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }

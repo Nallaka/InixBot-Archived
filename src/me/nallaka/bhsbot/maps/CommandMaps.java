@@ -1,6 +1,6 @@
-package me.nallaka.inixbot.maps;
+package me.nallaka.bhsbot.maps;
 
-import me.nallaka.inixbot.main.Command;
+import me.nallaka.bhsbot.main.Command;
 
 import java.util.HashMap;
 import java.util.Map;
