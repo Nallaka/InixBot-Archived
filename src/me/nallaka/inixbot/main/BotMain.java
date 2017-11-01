@@ -30,6 +30,8 @@ public class BotMain extends ListenerAdapter implements EventListener {
         jda.addEventListener(new MessageHandler());
 
         //Commands HashMap Setup
+        //TODO: Create a map in this class and pass it to other classes to use.
+        //TODO: Remove CommandMaps and HelpCommandMap
         CommandMaps commandMap = new CommandMaps();
         HelpCommandMap helpCommandMap = new HelpCommandMap();
 

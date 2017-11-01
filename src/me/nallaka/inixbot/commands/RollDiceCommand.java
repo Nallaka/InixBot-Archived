@@ -14,7 +14,8 @@ public class RollDiceCommand implements Command {
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
         if (Integer.parseInt(args[1]) < 1000) {
-            embeddedMessageBuilder.setTitle("Dice Roll").addField("You Rolled: Dice", Double.toString(Math.random() * Integer.parseInt(args[1])), true);
+            embeddedMessageBuilder.setTitle("Dice Roll")
+                    .addField("You Rolled: Dice", Double.toString(Math.random() * Integer.parseInt(args[1])), true);
             Math.random();
         }
     }
