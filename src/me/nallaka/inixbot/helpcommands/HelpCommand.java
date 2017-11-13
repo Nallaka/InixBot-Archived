@@ -1,7 +1,6 @@
 package me.nallaka.inixbot.helpcommands;
 
 import me.nallaka.inixbot.main.Command;
-import me.nallaka.inixbot.maps.HelpCommandMap;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class HelpCommand implements Command {
