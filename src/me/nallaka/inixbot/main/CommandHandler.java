@@ -1,19 +1,19 @@
 package me.nallaka.inixbot.main;
 
-import me.nallaka.inixbot.maps.CommandMaps;
+import me.nallaka.inixbot.maps.CommandMap;
 import me.nallaka.inixbot.maps.HelpCommandMap;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 class CommandHandler {
-    private CommandMaps commandMap = new CommandMaps();
+    private CommandMap commandMap = new CommandMap();
     private HelpCommandMap helpCommandMap = new HelpCommandMap();
 
     boolean isCommand(MessageReceivedEvent event, String[] commandArgs) {
-        return event.getAuthor().getJDA().getSelfUser() != event.getAuthor() && commandMap.containsKey(commandArgs[0].toLowerCase()) && !commandArgs[0].equalsIgnoreCase("help");
+        return event.getAuthor().getJDA().getSelfUser() != event.getAuthor() && commandMap.containsKey(commandArgs[0].toLowerCase()) && !commandArgs[0].equalsIgnoreCase("helpcommands");
     }
 
     boolean isHelpCommand(MessageReceivedEvent event, String[] commandArgs) {
-        return event.getAuthor().getJDA().getSelfUser() != event.getAuthor() && commandArgs[0].equalsIgnoreCase("help");
+        return event.getAuthor().getJDA().getSelfUser() != event.getAuthor() && commandArgs[0].equalsIgnoreCase("helpcommands");
     }
 
     void executeCommand(MessageReceivedEvent event, String[] commandArgs) {

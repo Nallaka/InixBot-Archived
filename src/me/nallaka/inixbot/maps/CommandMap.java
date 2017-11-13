@@ -5,7 +5,7 @@ import me.nallaka.inixbot.main.Command;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommandMaps {
+public class CommandMap {
     private static Map<String, Command> commandMap = new HashMap<>();
 
     public void setCommand(String commandString, Command command) {

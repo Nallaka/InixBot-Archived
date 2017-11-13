@@ -1,10 +1,6 @@
 package me.nallaka.inixbot.main;
 
-import me.nallaka.inixbot.commands.help.HelloHelpCommand;
-import me.nallaka.inixbot.commands.help.PingHelpCommand;
 import me.nallaka.inixbot.maps.*;
-import me.nallaka.inixbot.commands.*;
-import me.nallaka.inixbot.commands.help.HelpCommand;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -29,15 +25,8 @@ public class BotMain extends ListenerAdapter implements EventListener {
         JDA jda = new JDABuilder(AccountType.BOT).setToken(botToken).buildBlocking();
         jda.addEventListener(new MessageHandler());
 
-        //Commands HashMap Setup
-        CommandMaps commandMap = new CommandMaps();
-        HelpCommandMap helpCommandMap = new HelpCommandMap();
+        //Command Registry Setup
+        CommandRegistry commandRegistry = new CommandRegistry(new CommandMap(), new HelpCommandMap());
 
-        commandMap.setCommand("help", new HelpCommand());
-        commandMap.setCommand("ping", new PingCommand());
-        commandMap.setCommand("hello", new HelloCommand());
-
-        helpCommandMap.setHelpCommand("ping", new PingHelpCommand());
-        helpCommandMap.setHelpCommand("hello", new HelloHelpCommand());
     }
 }

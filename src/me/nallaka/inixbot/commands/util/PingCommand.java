@@ -1,20 +1,22 @@
-package me.nallaka.inixbot.commands.help;
+package me.nallaka.inixbot.commands.util;
 
 import me.nallaka.inixbot.main.Command;
+import me.nallaka.inixbot.main.CommandLogger;
+import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class PingHelpCommand implements Command {
+public class PingCommand implements Command {
+    CommandLogger commandLogger = new CommandLogger();
+
     @Override
     public boolean called(MessageReceivedEvent event, String[] args) {
-        return false;
+        return true;
     }
 
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
-        embeddedMessageBuilder.setTitle("Ping Command")
-                .setDescription("Returns Your Ping")
-                .addField("Usage", "``.ping``", true);
-        event.getTextChannel().sendMessage(embeddedMessageBuilder.build()).queue();
+        embeddedMessageBuilder.addField(new MessageEmbed.Field("Latency:", Long.toString(event.getAuthor().getJDA().getPing()) + "ms", true));
+        messageHandler.sendMessage(event, embeddedMessageBuilder);
         messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 

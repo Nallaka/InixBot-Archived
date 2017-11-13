@@ -1,9 +1,9 @@
-package me.nallaka.inixbot.commands.help;
+package me.nallaka.inixbot.helpcommands.utilhelp;
 
 import me.nallaka.inixbot.main.Command;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class HelloHelpCommand implements Command {
+public class PingHelpCommand implements Command {
     @Override
     public boolean called(MessageReceivedEvent event, String[] args) {
         return false;
@@ -11,10 +11,10 @@ public class HelloHelpCommand implements Command {
 
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
-        embeddedMessageBuilder.setTitle("Hello Command")
-                .setDescription("Simply says hello!")
-                .addField("Usage", "``.hello``", true);
-        event.getTextChannel().sendMessage(embeddedMessageBuilder.build()).queue();
+        embeddedMessageBuilder.setTitle("Ping Command")
+                .setDescription("Returns Your Ping")
+                .addField("Usage", "``.ping``", true);
+        messageHandler.sendMessage(event, embeddedMessageBuilder);
         messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 

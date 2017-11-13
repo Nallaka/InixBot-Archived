@@ -1,9 +1,11 @@
-package me.nallaka.inixbot.commands;
+package me.nallaka.inixbot.helpcommands;
 
 import me.nallaka.inixbot.main.Command;
+import me.nallaka.inixbot.maps.HelpCommandMap;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class HelloCommand implements Command {
+public class HelpCommand implements Command {
+
     @Override
     public boolean called(MessageReceivedEvent event, String[] args) {
         return true;
@@ -11,9 +13,10 @@ public class HelloCommand implements Command {
 
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
-        String name = event.getAuthor().getName();
-        embeddedMessageBuilder.setTitle("Hello!").setDescription(name);
-        event.getTextChannel().sendMessage(embeddedMessageBuilder.build()).queue();
+        embeddedMessageBuilder.setTitle("Help")
+                .setDescription("All the available commands")
+                .addField("Empty", "I'm pretty empty. Come back later when I can do more stuff!", true);
+        messageHandler.sendMessage(event, embeddedMessageBuilder);
         messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 
