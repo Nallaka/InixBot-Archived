@@ -8,8 +8,8 @@ public class HelloCommand implements Command {
     public void runCommand(MessageReceivedEvent event, String[] args) {
         String name = event.getAuthor().getName();
         embeddedMessageBuilder.setTitle("Hello!").setDescription(name);
-        messageHandler.sendMessage(event, embeddedMessageBuilder);
-        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
+        messageHandler.sendMessage(event, embeddedMessageBuilder)
+                .clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 
     @Override

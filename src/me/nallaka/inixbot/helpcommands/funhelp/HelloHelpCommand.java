@@ -9,8 +9,8 @@ public class HelloHelpCommand implements Command {
         embeddedMessageBuilder.setTitle("Hello Command")
                 .setDescription("Simply says hello!")
                 .addField("Usage", "``.hello``", true);
-        messageHandler.sendMessage(event, embeddedMessageBuilder);
-        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
+        messageHandler.sendMessage(event, embeddedMessageBuilder)
+                .clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 
     @Override

@@ -9,8 +9,8 @@ public class PingHelpCommand implements Command {
         embeddedMessageBuilder.setTitle("Ping Command")
                 .setDescription("Returns Your Ping")
                 .addField("Usage", "``.ping``", true);
-        messageHandler.sendMessage(event, embeddedMessageBuilder);
-        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
+        messageHandler.sendMessage(event, embeddedMessageBuilder)
+                .clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 
     @Override
