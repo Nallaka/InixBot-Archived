@@ -1,11 +1,11 @@
 package me.nallaka.inixbot.registry;
 
-import me.nallaka.inixbot.main.Command;
+import me.nallaka.inixbot.main.commandmeta.Command;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommandRegistry {
+public class CommandRegistryMeta {
     private static Map<String, Command> commandMap = new HashMap<>();
 
     public void setCommand(String commandString, Command command) {

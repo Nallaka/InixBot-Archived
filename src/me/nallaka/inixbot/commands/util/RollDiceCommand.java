@@ -1,15 +1,9 @@
 package me.nallaka.inixbot.commands.util;
 
-import me.nallaka.inixbot.main.Command;
+import me.nallaka.inixbot.main.commandmeta.Command;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class RollDiceCommand implements Command {
-
-    @Override
-    public boolean called(MessageReceivedEvent event, String[] args) {
-        return false;
-    }
-
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
         int diceArg = Integer.parseInt(args[1]);
@@ -24,7 +18,8 @@ public class RollDiceCommand implements Command {
     }
 
     @Override
-    public void executed(MessageReceivedEvent event, String[] args) {
-
+    public boolean executed(MessageReceivedEvent event, String[] args) {
+        commandLogger.logCommand(event, args);
+        return true;
     }
 }

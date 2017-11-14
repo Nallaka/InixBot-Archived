@@ -1,5 +1,6 @@
 package me.nallaka.inixbot.main;
 
+import me.nallaka.inixbot.main.commandmeta.CommandRegistry;
 import me.nallaka.inixbot.registry.*;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
@@ -26,7 +27,9 @@ public class BotMain extends ListenerAdapter implements EventListener {
         jda.addEventListener(new MessageHandler());
 
         //Command Registry Setup
-        CommandRegistry commandRegistry = new CommandRegistry(new me.nallaka.inixbot.registry.CommandRegistry(), new HelpCommandRegistry());
+        CommandRegistry commandRegistry = new CommandRegistry(new CommandRegistryMeta(), new HelpCommandRegistryMeta());
 
+        commandRegistry.setCommandRegistry();
+        commandRegistry.setHelpCommandRegistry();
     }
 }
