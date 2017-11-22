@@ -8,7 +8,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 public class PingCommand implements Command {
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
-        embeddedMessageBuilder.addField(new MessageEmbed.Field("Latency:", Long.toString(event.getAuthor().getJDA().getPing()) + "ms", true));
+        embeddedMessageBuilder.addField(new MessageEmbed.Field("Pong! -", Long.toString(event.getAuthor().getJDA().getPing()) + "ms", true));
         messageHandler.sendMessage(event, embeddedMessageBuilder);
         messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }

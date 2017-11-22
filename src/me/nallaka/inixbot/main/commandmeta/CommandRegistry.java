@@ -1,6 +1,7 @@
 package me.nallaka.inixbot.main.commandmeta;
 
 import me.nallaka.inixbot.commands.fun.HelloCommand;
+import me.nallaka.inixbot.commands.music.MusicCommand;
 import me.nallaka.inixbot.commands.util.PingCommand;
 import me.nallaka.inixbot.commands.util.RollDiceCommand;
 import me.nallaka.inixbot.helpcommands.HelpCommand;
@@ -24,10 +25,12 @@ public class CommandRegistry {
         commandRegistryMeta.setCommand("ping", new PingCommand());
         commandRegistryMeta.setCommand("hello", new HelloCommand());
         commandRegistryMeta.setCommand("rolldice", new RollDiceCommand());
+        commandRegistryMeta.setCommand("music", new MusicCommand());
     }
 
     public void setHelpCommandRegistry() {
         helpCommandRegistryMeta.setHelpCommand("ping", new PingHelpCommand());
         helpCommandRegistryMeta.setHelpCommand("hello", new HelloHelpCommand());
+        helpCommandRegistryMeta.setHelpCommand("music", new MusicCommand());
     }
 }

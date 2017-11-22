@@ -1,5 +1,8 @@
 package me.nallaka.inixbot.main;
 
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
+import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
+import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 import me.nallaka.inixbot.main.commandmeta.CommandRegistry;
 import me.nallaka.inixbot.registry.*;
 import net.dv8tion.jda.core.AccountType;
@@ -15,6 +18,8 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class BotMain extends ListenerAdapter implements EventListener {
+
+    public static String COMMAND_PREFIX = "_";
 
     public static void main(String[] args) throws LoginException, InterruptedException, RateLimitedException, IOException {
         //Bot Setup

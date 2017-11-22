@@ -8,7 +8,7 @@ public class HelloHelpCommand implements Command {
     public void runCommand(MessageReceivedEvent event, String[] args) {
         embeddedMessageBuilder.setTitle("Hello Command")
                 .setDescription("Simply says hello!")
-                .addField("Usage", "``.hello``", true);
+                .addField("Usage", "``.hello``", false);
         messageHandler.sendMessage(event, embeddedMessageBuilder);
         messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }
