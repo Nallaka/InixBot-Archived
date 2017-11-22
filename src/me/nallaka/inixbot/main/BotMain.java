@@ -1,10 +1,8 @@
 package me.nallaka.inixbot.main;
 
-import me.nallaka.inixbot.commands.help.HelloHelpCommand;
-import me.nallaka.inixbot.commands.help.PingHelpCommand;
-import me.nallaka.inixbot.maps.*;
-import me.nallaka.inixbot.commands.*;
-import me.nallaka.inixbot.commands.help.HelpCommand;
+import me.nallaka.inixbot.registry.CommandRegistryMeta;
+import me.nallaka.inixbot.registry.HelpCommandRegistryMeta;
+import me.nallaka.inixbot.main.commandmeta.CommandRegistry;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -19,27 +17,22 @@ import java.util.Properties;
 
 public class BotMain extends ListenerAdapter implements EventListener {
 
+    public static String COMMAND_PREFIX = "_";
+
     public static void main(String[] args) throws LoginException, InterruptedException, RateLimitedException, IOException {
         //Bot Setup
         Properties properties = new Properties();
-        InputStream inputStream = BotMain.class.getClassLoader().getResourceAsStream("me/nallaka/inixbot/main/dataConfig.properties");
+        InputStream inputStream = BotMain.class.getClassLoader().getResourceAsStream("me/nallaka/inixbot/temp/main/dataConfig.properties");
         properties.load(inputStream);
 
         String botToken = properties.getProperty("BOT_TOKEN");
         JDA jda = new JDABuilder(AccountType.BOT).setToken(botToken).buildBlocking();
         jda.addEventListener(new MessageHandler());
 
-        //Commands HashMap Setup
-        //TODO: Create a map in this class and pass it to other classes to use.
-        //TODO: Remove CommandMaps and HelpCommandMap
-        CommandMaps commandMap = new CommandMaps();
-        HelpCommandMap helpCommandMap = new HelpCommandMap();
+        //Command Registry Setup
+        CommandRegistry commandRegistry = new CommandRegistry(new CommandRegistryMeta(), new HelpCommandRegistryMeta());
 
-        commandMap.setCommand("help", new HelpCommand());
-        commandMap.setCommand("ping", new PingCommand());
-        commandMap.setCommand("hello", new HelloCommand());
-
-        helpCommandMap.setHelpCommand("ping", new PingHelpCommand());
-        helpCommandMap.setHelpCommand("hello", new HelloHelpCommand());
+        commandRegistry.setCommandRegistry();
+        commandRegistry.setHelpCommandRegistry();
     }
 }
