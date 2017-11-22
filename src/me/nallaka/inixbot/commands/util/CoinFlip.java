@@ -1,21 +1,26 @@
-package me.nallaka.inixbot.helpcommands;
+package me.nallaka.inixbot.commands.util;
 
 import me.nallaka.inixbot.main.commandmeta.Command;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class HelpCommand implements Command {
+public class CoinFlip implements Command {
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
-        embeddedMessageBuilder.setTitle("Help")
-                .setDescription("All the available commands")
-                .addField("Empty", "I'm pretty empty. Come back later when I can do more stuff!", true);
+        int random = (int) (Math.random()*1000);
+        String flip;
+        if (random % 2 == 0) {
+            flip = "Heads";
+        } else {
+            flip = "Tails";
+        }
+        embeddedMessageBuilder.addField("You Flipped - ", flip, true);
+        embeddedMessageBuilder.clearFields();
         messageHandler.sendMessage(event, embeddedMessageBuilder);
         messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 
     @Override
     public boolean executed(MessageReceivedEvent event, String[] args) {
-        commandLogger.logCommand(event, args);
-        return true;
+        return false;
     }
 }

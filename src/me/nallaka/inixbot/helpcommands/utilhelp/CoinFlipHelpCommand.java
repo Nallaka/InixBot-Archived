@@ -1,14 +1,14 @@
-package me.nallaka.inixbot.helpcommands.funhelp;
+package me.nallaka.inixbot.helpcommands.utilhelp;
 
 import me.nallaka.inixbot.main.commandmeta.HelpCommand;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class HelloHelpCommand implements HelpCommand {
+public class CoinFlipHelpCommand implements HelpCommand {
     @Override
     public void runHelpCommand(MessageReceivedEvent event, String[] args) {
-        embeddedMessageBuilder.setTitle("Hello Command")
-                .setDescription("Simply Says Hello!")
-                .addField("Usage", "``" + commandPrefix + "hello``", false);
+        embeddedMessageBuilder.setTitle("Coin Flip")
+                .setDescription("Flips a Coin")
+                .addField("Usage", "``" + commandPrefix + "coinflip``", false);
         messageHandler.sendMessage(event, embeddedMessageBuilder);
         messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }

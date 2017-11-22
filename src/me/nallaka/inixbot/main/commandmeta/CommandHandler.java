@@ -21,8 +21,7 @@ public class CommandHandler {
             commandRegistryMeta.getCommand(commandArgs[0]).runCommand(event, commandArgs);
             commandRegistryMeta.getCommand(commandArgs[0]).executed(event, commandArgs);
         } else if (isHelpCommand(event, commandArgs) && commandArgs.length >= 1) {
-            helpCommandRegistryMeta.getHelpCommand(commandArgs[1]).runCommand(event, commandArgs);
-            helpCommandRegistryMeta.getHelpCommand(commandArgs[1]).executed(event, commandArgs);
+            helpCommandRegistryMeta.getHelpCommand(commandArgs[1]).runHelpCommand(event, commandArgs);
         }
     }
 
