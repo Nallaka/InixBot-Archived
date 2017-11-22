@@ -8,5 +8,6 @@ public class CommandLogger {
         for (String commandArg : commandArgs) {
             System.out.print(commandArg + " ");
         }
+        System.out.println();
     }
 }

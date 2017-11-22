@@ -80,6 +80,7 @@ public class EightBallCommand implements Command {
 
     @Override
     public boolean executed(MessageReceivedEvent event, String[] args) {
+        commandLogger.logCommand(event, args);
         return false;
     }
 }
