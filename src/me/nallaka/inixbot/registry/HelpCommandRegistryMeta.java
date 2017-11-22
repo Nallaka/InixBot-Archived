@@ -1,10 +1,10 @@
-package me.nallaka.inixbot.maps;
+package me.nallaka.inixbot.registry;
 
-import me.nallaka.inixbot.main.Command;
+import me.nallaka.inixbot.main.commandmeta.Command;
 
 import java.util.HashMap;
 
-public class HelpCommandMap {
+public class HelpCommandRegistryMeta {
     private static HashMap<String, Command> helpCommandMap = new HashMap<>();
 
     public void setHelpCommand(String commandString, Command command) {
