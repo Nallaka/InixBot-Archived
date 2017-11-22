@@ -20,12 +20,14 @@ public class MessageHandler extends ListenerAdapter {
         }
     }
 
-    public void clearEmbeddedBuilder(EmbedBuilder embedBuilder) {
+    public MessageHandler clearEmbeddedBuilder(EmbedBuilder embedBuilder) {
         embedBuilder.setTitle(null).setDescription(null);
         embedBuilder.clearFields();
+        return this;
     }
 
-    public void sendMessage(MessageReceivedEvent event, EmbedBuilder embedBuilder) {
+    public MessageHandler sendMessage(MessageReceivedEvent event, EmbedBuilder embedBuilder) {
         event.getTextChannel().sendMessage(embedBuilder.build()).queue();
+        return this;
     }
 }

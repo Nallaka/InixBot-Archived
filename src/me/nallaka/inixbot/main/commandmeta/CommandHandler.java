@@ -8,11 +8,11 @@ public class CommandHandler {
     private CommandRegistryMeta commandRegistryMeta = new CommandRegistryMeta();
     private HelpCommandRegistryMeta helpCommandRegistryMeta = new HelpCommandRegistryMeta();
 
-    boolean isCommand(MessageReceivedEvent event, String[] commandArgs) {
+    private boolean isCommand(MessageReceivedEvent event, String[] commandArgs) {
         return event.getAuthor().getJDA().getSelfUser() != event.getAuthor() && commandRegistryMeta.containsKey(commandArgs[0].toLowerCase()) && !commandArgs[0].equalsIgnoreCase("help");
     }
 
-    boolean isHelpCommand(MessageReceivedEvent event, String[] commandArgs) {
+    private boolean isHelpCommand(MessageReceivedEvent event, String[] commandArgs) {
         return event.getAuthor().getJDA().getSelfUser() != event.getAuthor() && commandArgs[0].equalsIgnoreCase("help");
     }
 
