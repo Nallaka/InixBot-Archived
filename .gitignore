@@ -55,3 +55,7 @@ fabric.properties
 .idea/
 BHS-Bot.iml
 src/me/nallaka/inixbot/main/dataConfig.properties
+/src/me/nallaka/inixbot/commands/music/
+/src/me/nallaka/inixbot/helpcommands/musichelp/
+InixBot.iml
+target/
