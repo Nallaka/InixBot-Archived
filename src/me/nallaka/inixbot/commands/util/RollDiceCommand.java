@@ -9,15 +9,16 @@ public class RollDiceCommand implements Command {
         try {
             int diceArg = Integer.parseInt(args[1]);
             if (diceArg < 1000) {
-                embeddedMessageBuilder.addField(":game_die: You Rolled -", Integer.toString((int) (Math.random() * Integer.parseInt(args[1]))), true);
+                embeddedMessageBuilder.addField("You Rolled :game_die:", Integer.toString((int) (Math.random() * Integer.parseInt(args[1]))), true);
             } else {
-                embeddedMessageBuilder.addField("ERROR:", "Dice value too high. Please try again", true);
+                embeddedMessageBuilder.addField("ERROR :game_die:", "Dice value too high. Please try again", true);
             }
             messageHandler.sendMessage(event, embeddedMessageBuilder);
             messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
         } catch (ArrayIndexOutOfBoundsException e) {
-            embeddedMessageBuilder.addField("ERROR -", "Input a dice value", true);
-            e.printStackTrace();
+            embeddedMessageBuilder.addField("ERROR :game_die:", "Input a dice value", true);
+            messageHandler.sendMessage(event, embeddedMessageBuilder);
+            messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
         }
     }
 

@@ -22,7 +22,7 @@ public class BotMain extends ListenerAdapter implements EventListener {
     public static void main(String[] args) throws LoginException, InterruptedException, RateLimitedException, IOException {
         //Bot Setup
         Properties properties = new Properties();
-        InputStream inputStream = BotMain.class.getClassLoader().getResourceAsStream("me/nallaka/inixbot/temp/main/dataConfig.properties");
+        InputStream inputStream = BotMain.class.getClassLoader().getResourceAsStream("me/nallaka/inixbot/main/dataConfig.properties");
         properties.load(inputStream);
 
         String botToken = properties.getProperty("BOT_TOKEN");

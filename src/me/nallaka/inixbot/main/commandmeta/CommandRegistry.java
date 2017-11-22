@@ -1,10 +1,12 @@
 package me.nallaka.inixbot.main.commandmeta;
 
+import me.nallaka.inixbot.commands.fun.EightBallCommand;
 import me.nallaka.inixbot.commands.fun.HelloCommand;
 import me.nallaka.inixbot.commands.music.MusicCommand;
 import me.nallaka.inixbot.commands.util.PingCommand;
 import me.nallaka.inixbot.commands.util.RollDiceCommand;
 import me.nallaka.inixbot.commands.util.HelpCommand;
+import me.nallaka.inixbot.helpcommands.funhelp.EightBallHelpCommand;
 import me.nallaka.inixbot.helpcommands.funhelp.HelloHelpCommand;
 import me.nallaka.inixbot.helpcommands.musichelp.MusicHelpCommand;
 import me.nallaka.inixbot.helpcommands.utilhelp.PingHelpCommand;
@@ -28,6 +30,7 @@ public class CommandRegistry {
         commandRegistryMeta.setCommand("hello", new HelloCommand());
         commandRegistryMeta.setCommand("rolldice", new RollDiceCommand());
         commandRegistryMeta.setCommand("music", new MusicCommand());
+        commandRegistryMeta.setCommand("8ball", new EightBallCommand());
     }
 
     public void setHelpCommandRegistry() {
@@ -35,5 +38,6 @@ public class CommandRegistry {
         helpCommandRegistryMeta.setHelpCommand("hello", new HelloHelpCommand());
         helpCommandRegistryMeta.setHelpCommand("music", new MusicHelpCommand());
         helpCommandRegistryMeta.setHelpCommand("rolldice", new RollDiceHelpCommand());
+        helpCommandRegistryMeta.setHelpCommand("8ball", new EightBallHelpCommand());
     }
 }

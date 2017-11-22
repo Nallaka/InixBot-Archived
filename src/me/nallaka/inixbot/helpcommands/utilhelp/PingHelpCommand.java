@@ -6,7 +6,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 public class PingHelpCommand implements HelpCommand {
     @Override
     public void runHelpCommand(MessageReceivedEvent event, String[] args) {
-        embeddedMessageBuilder.setTitle("Ping")
+        embeddedMessageBuilder.setTitle("Ping :ping_pong:")
                 .setDescription("Returns Latency")
                 .addField("Usage", "``" + commandPrefix + "ping``", false);
         messageHandler.sendMessage(event, embeddedMessageBuilder)
