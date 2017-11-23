@@ -79,6 +79,15 @@ public class EightBallCommand implements Command {
     }
 
     @Override
+    public void runHelpCommand(MessageReceivedEvent event, String[] args) {
+        embeddedMessageBuilder.setTitle("8 Ball :8ball:")
+                .setDescription("You Ask, It Answers")
+                .addField("Usage", "``" + commandPrefix + "8ball``", false);
+        messageHandler.sendMessage(event, embeddedMessageBuilder);
+        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
+    }
+
+    @Override
     public boolean executed(MessageReceivedEvent event, String[] args) {
         commandLogger.logCommand(event, args);
         return false;

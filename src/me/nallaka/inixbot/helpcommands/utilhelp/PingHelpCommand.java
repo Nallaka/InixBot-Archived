@@ -8,7 +8,7 @@ public class PingHelpCommand implements HelpCommand {
     public void runHelpCommand(MessageReceivedEvent event, String[] args) {
         embeddedMessageBuilder.setTitle("Ping :ping_pong:")
                 .setDescription("Returns Latency")
-                .addField("Usage", "``" + commandPrefix + "ping``", false);
+                .addField("Usage", "``" + commandPrefix + "ping``", true);
         messageHandler.sendMessage(event, embeddedMessageBuilder)
                 .clearEmbeddedBuilder(embeddedMessageBuilder);
     }

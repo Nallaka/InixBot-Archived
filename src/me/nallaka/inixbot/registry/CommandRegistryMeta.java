@@ -16,6 +16,10 @@ public class CommandRegistryMeta {
         return commandMap.get(commandString);
     }
 
+    public static Map<String, Command> getCommandMap() {
+        return commandMap;
+    }
+
     public boolean containsKey(String key) {
         return commandMap.containsKey(key);
     }

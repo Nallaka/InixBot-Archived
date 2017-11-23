@@ -7,10 +7,17 @@ public class HelpCommand implements Command {
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
         embeddedMessageBuilder.setTitle("Help")
-                .setDescription("All the available commands")
-                .addField("Empty", "I'm pretty empty. Come back later when I can do more stuff!", true);
+                .setDescription("Do ``_help <command>`` for more information");
+        embeddedMessageBuilder.addField("Fun Commands", "``8ball``, ``hello``,", true);
+        embeddedMessageBuilder.addField("Music Commands", "``music``, ", true);
+        embeddedMessageBuilder.addField("Utility Commands", "``changeheader``, ``coin``, ``ping``, ``rolldice``", true);
         messageHandler.sendMessage(event, embeddedMessageBuilder);
         messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
+    }
+
+    @Override
+    public void runHelpCommand(MessageReceivedEvent event, String[] args) {
+
     }
 
     @Override

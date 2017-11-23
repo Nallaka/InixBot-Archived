@@ -24,7 +24,13 @@ public class MusicCommand implements Command {
             return;
         }
 
-        String input = args[1];
+        String input="";
+
+        for(String s: args) {
+            input = s + " ";
+        }
+
+        input.replaceFirst("music ", "");
 
         if (!(input.startsWith("http://") || input.startsWith("https://"))) {
             input = "ytsearch: " + input;
@@ -32,6 +38,15 @@ public class MusicCommand implements Command {
 
         loadTrack(input, event.getMember(), event.getMessage());
 
+    }
+
+    @Override
+    public void runHelpCommand(MessageReceivedEvent event, String[] args) {
+        embeddedMessageBuilder.setTitle("Music :musical_note:")
+                .setDescription("Music Commands")
+                .addField("Usage", "``" + commandPrefix + "music``", false);
+        messageHandler.sendMessage(event, embeddedMessageBuilder);
+        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 
     @Override

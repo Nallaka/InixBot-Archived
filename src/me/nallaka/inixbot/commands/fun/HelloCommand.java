@@ -12,6 +12,15 @@ public class HelloCommand implements Command {
     }
 
     @Override
+    public void runHelpCommand(MessageReceivedEvent event, String[] args) {
+        embeddedMessageBuilder.setTitle("Hello Command")
+                .setDescription("Simply Says Hello!")
+                .addField("Usage", "``" + commandPrefix + "hello``", false);
+        messageHandler.sendMessage(event, embeddedMessageBuilder);
+        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
+    }
+
+    @Override
     public boolean executed(MessageReceivedEvent event, String[] args) {
         commandLogger.logCommand(event, args);
         return true;

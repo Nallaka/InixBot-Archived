@@ -23,6 +23,15 @@ public class RollDiceCommand implements Command {
     }
 
     @Override
+    public void runHelpCommand(MessageReceivedEvent event, String[] args) {
+        embeddedMessageBuilder.setTitle("Roll Dice :game_die:")
+                .setDescription("Rolls a Die")
+                .addField("Usage", "``" + commandPrefix + "rolldice <number>``", true);
+        messageHandler.sendMessage(event, embeddedMessageBuilder)
+                .clearEmbeddedBuilder(embeddedMessageBuilder);
+    }
+
+    @Override
     public boolean executed(MessageReceivedEvent event, String[] args) {
         commandLogger.logCommand(event, args);
         return true;

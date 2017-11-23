@@ -13,6 +13,15 @@ public class PingCommand implements Command {
     }
 
     @Override
+    public void runHelpCommand(MessageReceivedEvent event, String[] args) {
+        embeddedMessageBuilder.setTitle("Ping :ping_pong:")
+                .setDescription("Returns Latency")
+                .addField("Usage", "``" + commandPrefix + "ping``", true);
+        messageHandler.sendMessage(event, embeddedMessageBuilder)
+                .clearEmbeddedBuilder(embeddedMessageBuilder);
+    }
+
+    @Override
     public boolean executed(MessageReceivedEvent event, String[] args) {
         commandLogger.logCommand(event, args);
         return true;

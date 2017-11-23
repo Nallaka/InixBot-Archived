@@ -8,7 +8,7 @@ public class RollDiceHelpCommand implements HelpCommand {
     public void runHelpCommand(MessageReceivedEvent event, String[] args) {
         embeddedMessageBuilder.setTitle("Roll Dice :game_die:")
                 .setDescription("Rolls a Die")
-                .addField("Usage", "``" + commandPrefix + "rolldice <number>``", false);
+                .addField("Usage", "``" + commandPrefix + "rolldice <number>``", true);
         messageHandler.sendMessage(event, embeddedMessageBuilder)
                 .clearEmbeddedBuilder(embeddedMessageBuilder);
     }
