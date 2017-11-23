@@ -40,5 +40,6 @@ public class CommandRegistry {
         setCommand("8ball", new EightBallCommand());
         setCommand("changeheader", new ChangeHeaderCommand());
         setCommand("whatdoesthistrinketdo", new WhatDoesThisTrinketDoCommand());
+        setCommand("google", new GoogleSearchCommand());
     }
 }
