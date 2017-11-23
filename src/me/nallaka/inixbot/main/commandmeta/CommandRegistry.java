@@ -2,6 +2,7 @@ package me.nallaka.inixbot.main.commandmeta;
 
 import me.nallaka.inixbot.commands.fun.EightBallCommand;
 import me.nallaka.inixbot.commands.fun.HelloCommand;
+import me.nallaka.inixbot.commands.fun.WhatDoesThisTrinketDoCommand;
 import me.nallaka.inixbot.commands.music.MusicCommand;
 import me.nallaka.inixbot.commands.util.*;
 import me.nallaka.inixbot.commands.util.HelpCommand;
@@ -13,7 +14,7 @@ public class CommandRegistry {
 
     private static Map<String, Command> commandMap = new HashMap<>();
 
-    public void setCommand(String commandString, Command command, Map<String, Command> commandMap) {
+    public void setCommand(String commandString, Command command) {
         commandMap.put(commandString, command);
     }
 
@@ -30,13 +31,14 @@ public class CommandRegistry {
     }
 
     public void setCommandRegistry() {
-        setCommand("help", new HelpCommand(), commandMap);
-        setCommand("ping", new PingCommand(), commandMap);
-        setCommand("hello", new HelloCommand(), commandMap);
-        setCommand("rolldice", new RollDiceCommand(), commandMap);
-        setCommand("music", new MusicCommand(), commandMap);
-        setCommand("coin", new CoinFlipCommand(), commandMap);
-        setCommand("8ball", new EightBallCommand(), commandMap);
-        setCommand("changeheader", new ChangeHeaderCommand(), commandMap);
+        setCommand("help", new HelpCommand());
+        setCommand("ping", new PingCommand());
+        setCommand("hello", new HelloCommand());
+        setCommand("rolldice", new RollDiceCommand());
+        setCommand("music", new MusicCommand());
+        setCommand("coin", new CoinFlipCommand());
+        setCommand("8ball", new EightBallCommand());
+        setCommand("changeheader", new ChangeHeaderCommand());
+        setCommand("whatdoesthistrinketdo", new WhatDoesThisTrinketDoCommand());
     }
 }

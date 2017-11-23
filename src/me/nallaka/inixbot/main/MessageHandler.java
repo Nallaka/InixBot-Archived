@@ -11,12 +11,19 @@ public class MessageHandler extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
+        String beheadedCommand;
         if (event.getMessage().getContent().startsWith(BotMain.COMMAND_PREFIX)) {
-            String beheadedCommand = event.getMessage().getContent().replaceFirst(BotMain.COMMAND_PREFIX, "").toLowerCase();
+            beheadedCommand = event.getMessage().getContent().replaceFirst(BotMain.COMMAND_PREFIX, "").toLowerCase();
+            String[] commandArgs = beheadedCommand.split("\\s");
+
+            commandHandler.executeCommand(event, commandArgs);
+        } else if(event.getMessage().getContent().startsWith(BotMain.COMMAND_DEFAULT_PREFIX)) {
+            beheadedCommand = event.getMessage().getContent().replaceFirst(BotMain.COMMAND_DEFAULT_PREFIX, "").toLowerCase();
             String[] commandArgs = beheadedCommand.split("\\s");
 
             commandHandler.executeCommand(event, commandArgs);
         }
+
     }
 
     public MessageHandler clearEmbeddedBuilder(EmbedBuilder embedBuilder) {

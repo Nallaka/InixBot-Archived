@@ -15,6 +15,7 @@ import java.util.Properties;
 
 public class BotMain extends ListenerAdapter implements EventListener {
 
+    public static String COMMAND_DEFAULT_PREFIX = "_";
     public static String COMMAND_PREFIX = "_";
 
     public static void main(String[] args) throws LoginException, InterruptedException, RateLimitedException, IOException {
