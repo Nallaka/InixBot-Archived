@@ -6,7 +6,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 public class HelloCommand implements Command {
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
-        embeddedMessageBuilder.setTitle("Hello!").setDescription(event.getMessage().getAuthor().getName());
+        embeddedMessageBuilder.setTitle("Hello :wave:").setDescription(event.getMessage().getAuthor().getName());
         messageHandler.sendMessage(event, embeddedMessageBuilder);
     }
 
