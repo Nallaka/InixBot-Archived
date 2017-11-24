@@ -18,17 +18,12 @@ public class RollDiceCommand implements Command {
         } catch (ArrayIndexOutOfBoundsException e) {
             embeddedMessageBuilder.addField("ERROR :game_die:", "Input a dice value", true);
             messageHandler.sendMessage(event, embeddedMessageBuilder);
-            messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
         }
     }
 
     @Override
     public void runHelpCommand(MessageReceivedEvent event, String[] args) {
-        embeddedMessageBuilder.setTitle("Roll Dice :game_die:")
-                .setDescription("Rolls a Die")
-                .addField("Usage", "``" + commandPrefix + "rolldice <number>``", true);
-        messageHandler.sendMessage(event, embeddedMessageBuilder)
-                .clearEmbeddedBuilder(embeddedMessageBuilder);
+        messageHandler.sendHelpMessage(event, embeddedMessageBuilder, "Roll Dice :game_die:", "Rolls a Die", "rolldice <number>");
     }
 
     @Override

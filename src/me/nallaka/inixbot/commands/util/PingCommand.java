@@ -9,16 +9,11 @@ public class PingCommand implements Command {
     public void runCommand(MessageReceivedEvent event, String[] args) {
         embeddedMessageBuilder.addField(new MessageEmbed.Field("Pong! :ping_pong:", Long.toString(event.getAuthor().getJDA().getPing()) + "ms", true));
         messageHandler.sendMessage(event, embeddedMessageBuilder);
-        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 
     @Override
     public void runHelpCommand(MessageReceivedEvent event, String[] args) {
-        embeddedMessageBuilder.setTitle("Ping :ping_pong:")
-                .setDescription("Returns Latency")
-                .addField("Usage", "``" + commandPrefix + "ping``", true);
-        messageHandler.sendMessage(event, embeddedMessageBuilder)
-                .clearEmbeddedBuilder(embeddedMessageBuilder);
+        messageHandler.sendHelpMessage(event, embeddedMessageBuilder, "Ping :ping_pong:", "Returns Latency", "ping");
     }
 
     @Override

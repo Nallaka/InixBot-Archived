@@ -14,20 +14,16 @@ public class ChangeHeaderCommand implements Command {
             embeddedMessageBuilder.addField("ERROR :no_entry:", "Input a New Header", true);
         }
         messageHandler.sendMessage(event, embeddedMessageBuilder);
-        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 
     @Override
     public void runHelpCommand(MessageReceivedEvent event, String[] args) {
-        embeddedMessageBuilder.setTitle("Change Command Header")
-                .setDescription("Changes the Command Prefix")
-                .addField("Usage", "``" + commandPrefix + "changeheader <header>``", true);
-        messageHandler.sendMessage(event, embeddedMessageBuilder);
-        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
+        messageHandler.sendHelpMessage(event, embeddedMessageBuilder, "Change Command Header :gear:", "Changes the Command Prefix", "changeheader <header>");
     }
 
     @Override
     public boolean executed(MessageReceivedEvent event, String[] args) {
+        commandLogger.logCommand(event, args);
         return false;
     }
 }

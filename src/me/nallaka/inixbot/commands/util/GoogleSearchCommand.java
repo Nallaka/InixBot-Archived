@@ -34,35 +34,32 @@ public class GoogleSearchCommand implements Command {
                 e.printStackTrace();
             }
 
-            for (Element link : links) {
-                String title = link.text();
-                String url = link.absUrl("href");
-                try {
-                    url = URLDecoder.decode(url.substring(url.indexOf('=') + 1, url.indexOf('&')), "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
+            if (links != null) {
+                for (Element link : links) {
+                    String title = link.text();
+                    String url = link.absUrl("href");
+                    try {
+                        url = URLDecoder.decode(url.substring(url.indexOf('=') + 1, url.indexOf('&')), "UTF-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
 
-                if (!url.startsWith("http")) {
-                    continue;
-                }
+                    if (!url.startsWith("http")) {
+                        continue;
+                    }
 
-                embeddedMessageBuilder.addField(title, url,true);
+                    embeddedMessageBuilder.addField(title, url,true);
+                }
             }
         } else {
             embeddedMessageBuilder.addField("ERROR :no_entry:", "Input a Search", false);
         }
         messageHandler.sendMessage(event, embeddedMessageBuilder);
-        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 
     @Override
     public void runHelpCommand(MessageReceivedEvent event, String[] args) {
-        embeddedMessageBuilder.setTitle("Google Search")
-                .setDescription("Searches Google")
-                .addField("Usage", "``" + commandPrefix + "google <search>``", true);
-        messageHandler.sendMessage(event, embeddedMessageBuilder);
-        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
+        messageHandler.sendHelpMessage(event, embeddedMessageBuilder, "Google Search :mag_right:", "Search Google", "google <search>");
     }
 
     @Override

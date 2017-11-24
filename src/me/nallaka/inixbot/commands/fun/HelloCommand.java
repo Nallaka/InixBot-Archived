@@ -8,16 +8,11 @@ public class HelloCommand implements Command {
     public void runCommand(MessageReceivedEvent event, String[] args) {
         embeddedMessageBuilder.setTitle("Hello!").setDescription(event.getMessage().getAuthor().getName());
         messageHandler.sendMessage(event, embeddedMessageBuilder);
-        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 
     @Override
     public void runHelpCommand(MessageReceivedEvent event, String[] args) {
-        embeddedMessageBuilder.setTitle("Hello Command")
-                .setDescription("Simply Says Hello!")
-                .addField("Usage", "``" + commandPrefix + "hello``", false);
-        messageHandler.sendMessage(event, embeddedMessageBuilder);
-        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
+        messageHandler.sendHelpMessage(event, embeddedMessageBuilder, "Hello", "Simply Says Hello", "hello");
     }
 
     @Override
