@@ -8,7 +8,6 @@ public class WhatDoesThisTrinketDoCommand implements Command {
     public void runCommand(MessageReceivedEvent event, String[] args) {
         embeddedMessageBuilder.setTitle("AND THE TING GOES!").setDescription("SKRAAAAAAAAAAAAAAAAAAA");
         messageHandler.sendMessage(event, embeddedMessageBuilder);
-        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 
     @Override
@@ -17,7 +16,6 @@ public class WhatDoesThisTrinketDoCommand implements Command {
                 .setDescription("No")
                 .addField("2+2=4-1=3", "Quick Maths!", false);
         messageHandler.sendMessage(event, embeddedMessageBuilder);
-        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 
     @Override

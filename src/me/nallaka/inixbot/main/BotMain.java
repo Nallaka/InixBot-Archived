@@ -1,5 +1,6 @@
 package me.nallaka.inixbot.main;
 
+import me.nallaka.inixbot.main.commandmeta.CommandHandler;
 import me.nallaka.inixbot.main.commandmeta.CommandRegistry;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
@@ -26,7 +27,7 @@ public class BotMain extends ListenerAdapter implements EventListener {
 
         String botToken = properties.getProperty("BOT_TOKEN");
         JDA jda = new JDABuilder(AccountType.BOT).setToken(botToken).buildBlocking();
-        jda.addEventListener(new MessageHandler());
+        jda.addEventListener(new CommandHandler());
 
         //Command Registry Setup
         CommandRegistry commandRegistry = new CommandRegistry();

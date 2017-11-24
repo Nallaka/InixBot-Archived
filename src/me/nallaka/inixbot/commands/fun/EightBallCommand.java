@@ -75,16 +75,11 @@ public class EightBallCommand implements Command {
         }
         embeddedMessageBuilder.addField(":8ball: says", eightBallResponse, true);
         messageHandler.sendMessage(event, embeddedMessageBuilder);
-        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 
     @Override
     public void runHelpCommand(MessageReceivedEvent event, String[] args) {
-        embeddedMessageBuilder.setTitle("8 Ball :8ball:")
-                .setDescription("You Ask, It Answers")
-                .addField("Usage", "``" + commandPrefix + "8ball``", false);
-        messageHandler.sendMessage(event, embeddedMessageBuilder);
-        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
+        messageHandler.sendHelpMessage(event, embeddedMessageBuilder, "8 Ball :8ball:", "You Ask, It Answers", "8ball");
     }
 
     @Override

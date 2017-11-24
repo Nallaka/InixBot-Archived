@@ -5,7 +5,6 @@ import me.nallaka.inixbot.commands.fun.HelloCommand;
 import me.nallaka.inixbot.commands.fun.WhatDoesThisTrinketDoCommand;
 import me.nallaka.inixbot.commands.music.MusicCommand;
 import me.nallaka.inixbot.commands.util.*;
-import me.nallaka.inixbot.commands.util.HelpCommand;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,5 +39,6 @@ public class CommandRegistry {
         setCommand("8ball", new EightBallCommand());
         setCommand("changeheader", new ChangeHeaderCommand());
         setCommand("whatdoesthistrinketdo", new WhatDoesThisTrinketDoCommand());
+        setCommand("google", new GoogleSearchCommand());
     }
 }

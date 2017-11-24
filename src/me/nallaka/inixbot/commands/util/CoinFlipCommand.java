@@ -15,7 +15,6 @@ public class CoinFlipCommand implements Command {
         }
         embeddedMessageBuilder.addField("You Flipped - ", flip, true);
         messageHandler.sendMessage(event, embeddedMessageBuilder);
-        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 
     @Override
@@ -25,6 +24,7 @@ public class CoinFlipCommand implements Command {
                 .addField("Usage", "``" + commandPrefix + "coinflip``", true);
         messageHandler.sendMessage(event, embeddedMessageBuilder);
         messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
+        messageHandler.sendHelpMessage(event, embeddedMessageBuilder, "Coin Flip", "Flips a Coin", "coinflip");
     }
 
     @Override

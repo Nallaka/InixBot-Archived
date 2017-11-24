@@ -8,16 +8,15 @@ public class HelpCommand implements Command {
     public void runCommand(MessageReceivedEvent event, String[] args) {
         embeddedMessageBuilder.setTitle("Help")
                 .setDescription("Do ``_help <command>`` for more information");
-        embeddedMessageBuilder.addField("Fun Commands", "``8ball``, ``hello``,", true);
-        embeddedMessageBuilder.addField("Music Commands", "``music``, ", true);
-        embeddedMessageBuilder.addField("Utility Commands", "``changeheader``, ``coin``, ``ping``, ``rolldice``", true);
+        embeddedMessageBuilder.addField("Fun Commands :boom:", "``8ball``, ``hello``,", true);
+        embeddedMessageBuilder.addField("Music Commands :musical_note:", "``music``, ", true);
+        embeddedMessageBuilder.addField("Utility Commands :tools:", "``changeheader``, ``coin``, ``ping``, ``rolldice``", true);
         messageHandler.sendMessage(event, embeddedMessageBuilder);
-        messageHandler.clearEmbeddedBuilder(embeddedMessageBuilder);
     }
 
     @Override
     public void runHelpCommand(MessageReceivedEvent event, String[] args) {
-
+        messageHandler.sendHelpMessage(event, embeddedMessageBuilder, "Help", "Helps you with Help?", "help help");
     }
 
     @Override
