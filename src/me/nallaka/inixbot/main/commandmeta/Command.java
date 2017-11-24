@@ -24,4 +24,8 @@ public abstract class Command {
     public Command(PermissionLevel permissionLevel) {
         this.permissionLevel = permissionLevel;
     }
+
+    public PermissionLevel getCommandPermissionLevel() {
+        return  this.permissionLevel;
+    }
 }
