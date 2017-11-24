@@ -1,9 +1,14 @@
 package me.nallaka.inixbot.commands.util;
 
 import me.nallaka.inixbot.main.commandmeta.Command;
+import me.nallaka.inixbot.main.commandmeta.PermissionLevel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class RollDiceCommand implements Command {
+public class RollDiceCommand extends Command {
+    public RollDiceCommand(PermissionLevel permissionLevel) {
+        super(permissionLevel);
+    }
+
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
         try {

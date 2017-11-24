@@ -30,15 +30,15 @@ public class CommandRegistry {
     }
 
     public void setCommandRegistry() {
-        setCommand("help", new HelpCommand());
-        setCommand("ping", new PingCommand());
-        setCommand("hello", new HelloCommand());
-        setCommand("rolldice", new RollDiceCommand());
-        setCommand("music", new MusicCommand());
-        setCommand("coin", new CoinFlipCommand());
-        setCommand("8ball", new EightBallCommand());
-        setCommand("changeheader", new ChangeHeaderCommand());
-        setCommand("whatdoesthistrinketdo", new WhatDoesThisTrinketDoCommand());
-        setCommand("google", new GoogleSearchCommand());
+        setCommand("help", new HelpCommand(PermissionLevel.LOW));
+        setCommand("ping", new PingCommand(PermissionLevel.LOW));
+        setCommand("hello", new HelloCommand(PermissionLevel.LOW));
+        setCommand("rolldice", new RollDiceCommand(PermissionLevel.LOW));
+        setCommand("music", new MusicCommand(PermissionLevel.LOW));
+        setCommand("coin", new CoinFlipCommand(PermissionLevel.LOW));
+        setCommand("8ball", new EightBallCommand(PermissionLevel.LOW));
+        setCommand("changeheader", new ChangeHeaderCommand(PermissionLevel.LOW));
+        setCommand("whatdoesthistrinketdo", new WhatDoesThisTrinketDoCommand(PermissionLevel.LOW));
+        setCommand("google", new GoogleSearchCommand(PermissionLevel.LOW));
     }
 }
