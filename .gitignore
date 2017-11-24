@@ -55,4 +55,7 @@ fabric.properties
 
 .idea/
 BHS-Bot.iml
-src/me/nallaka/inixbot/main/dataConfig.properties
+src/me/nallaka/inixbot/main/config.properties
+/src/me/nallaka/inixbot/main/permissionmeta/permissions.properties
+target/
+/src/me/nallaka/inixbot/main/config.properties

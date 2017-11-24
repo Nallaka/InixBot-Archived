@@ -2,7 +2,7 @@ package me.nallaka.inixbot.commands.util;
 
 import me.nallaka.inixbot.main.BotMain;
 import me.nallaka.inixbot.main.commandmeta.Command;
-import me.nallaka.inixbot.main.commandmeta.PermissionLevel;
+import me.nallaka.inixbot.main.permissionmeta.PermissionLevel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class ChangeHeaderCommand extends Command {

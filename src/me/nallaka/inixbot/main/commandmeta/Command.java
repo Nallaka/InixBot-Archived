@@ -2,6 +2,7 @@ package me.nallaka.inixbot.main.commandmeta;
 
 import me.nallaka.inixbot.main.BotMain;
 import me.nallaka.inixbot.main.MessageHandler;
+import me.nallaka.inixbot.main.permissionmeta.PermissionLevel;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 

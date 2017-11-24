@@ -1,6 +1,7 @@
 package me.nallaka.inixbot.main.commandmeta;
 
 import me.nallaka.inixbot.main.BotMain;
+import me.nallaka.inixbot.main.permissionmeta.PermissionLevel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
@@ -13,6 +14,11 @@ public class CommandHandler extends ListenerAdapter {
 
     private boolean isHelpCommand(MessageReceivedEvent event, String[] commandArgs) {
         return event.getAuthor().getJDA().getSelfUser() != event.getAuthor() && commandArgs[0].equalsIgnoreCase("help");
+    }
+
+    private boolean userHasPermission(MessageReceivedEvent event, String[] commandArgs, PermissionLevel permissionLevel) {
+        //TODO: Create User map on start up and check map for permission level
+        return true;
     }
 
     @Override
