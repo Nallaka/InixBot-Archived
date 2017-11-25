@@ -5,13 +5,14 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.*;
 
 public class Permissions extends ListenerAdapter {
-    private static Map<User, PermissionLevel> userPermissionLevelMap = new Map<User, PermissionLevel>() {
+    private static Map<String, PermissionLevel> userPermissionLevelMap = new Map<String, PermissionLevel>() {
         @Override
         public int size() {
             return 0;
@@ -38,7 +39,7 @@ public class Permissions extends ListenerAdapter {
         }
 
         @Override
-        public PermissionLevel put(User key, PermissionLevel value) {
+        public PermissionLevel put(String key, PermissionLevel value) {
             return null;
         }
 
@@ -48,7 +49,7 @@ public class Permissions extends ListenerAdapter {
         }
 
         @Override
-        public void putAll(Map<? extends User, ? extends PermissionLevel> m) {
+        public void putAll(Map<? extends String, ? extends PermissionLevel> m) {
 
         }
 
@@ -58,7 +59,7 @@ public class Permissions extends ListenerAdapter {
         }
 
         @Override
-        public Set<User> keySet() {
+        public Set<String> keySet() {
             return null;
         }
 
@@ -68,40 +69,101 @@ public class Permissions extends ListenerAdapter {
         }
 
         @Override
-        public Set<Entry<User, PermissionLevel>> entrySet() {
+        public Set<Entry<String, PermissionLevel>> entrySet() {
             return null;
         }
+
+        @Override
+        public boolean equals(Object o) {
+            return false;
+        }
+
+        @Override
+        public int hashCode() {
+            return 0;
+        }
     };
+    Properties properties = new Properties();
+    InputStream input = null;
+    OutputStream output = null;
+    String filePath = "me/nallaka/inixbot/main/permissionmeta/permissions.properties";
 
-    public void setDefaultUserPermissions(JDA jda) {
-        List<User> userList = jda.getUsers();
-        for (User u : userList) {
-            userPermissionLevelMap.put(u, PermissionLevel.LOW);
+    public void loadUsersPermissionLevels() {
+        try {
+            input = getClass().getClassLoader().getResourceAsStream(filePath);
+            if (input == null) {
+                System.out.println("Sorry, unable to find " + filePath);
+                return;
+            }
+
+            properties.load(input);
+
+            Enumeration<?> e = properties.propertyNames();
+            while (e.hasMoreElements()) {
+                String key = (String) e.nextElement();
+                String value = properties.getProperty(key);
+                PermissionLevel permissionLevel;
+                switch (value) {
+                    case "DEFAULT":
+                        permissionLevel = PermissionLevel.DEFAULT;
+                        break;
+                    case "LOW":
+                        permissionLevel = PermissionLevel.LOW;
+                        break;
+                    case "MEDIUM":
+                        permissionLevel = PermissionLevel.MEDIUM;
+                        break;
+                    case "HIGH":
+                        permissionLevel = PermissionLevel.HIGH;
+                        break;
+                    case "ADMIN":
+                        permissionLevel = PermissionLevel.ADMIN;
+                        break;
+                    case "OWNER":
+                        permissionLevel = PermissionLevel.OWNER;
+                        break;
+                    default:
+                        permissionLevel = PermissionLevel.DEFAULT;
+                        break;
+                }
+                userPermissionLevelMap.put(key, permissionLevel);
+            }
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+
+    public void setUserDefaultPermissionLevel(User user) {
+        if (!userPermissionLevelMap.containsKey(user.getId())) {
+            userPermissionLevelMap.put(user.getId(), PermissionLevel.DEFAULT);
         }
     }
 
-    //TODO: Get user permissions from file and put in map
-    public void loadUserPermissionLevels() {
+    public void setUsersDefaultPermissioLevels(JDA jda) throws FileNotFoundException {
 
-    }
-
-    public void setUserPermissionLevel(User user, PermissionLevel permissionLevel) {
-        if (!userPermissionLevelMap.containsKey(user)) {
-            userPermissionLevelMap.put(user, permissionLevel);
-        }
     }
 
     public void changeUserPermissionLevel(User user, PermissionLevel permissionLevel) {
-        userPermissionLevelMap.remove(user);
-        userPermissionLevelMap.put(user, permissionLevel);
+        userPermissionLevelMap.remove(user.getId());
+        userPermissionLevelMap.put(user.getId(), permissionLevel);
     }
 
     public boolean userHasPermissionLevel(User user, PermissionLevel permissionLevel) {
-        return  (userPermissionLevelMap.get(user).equals(permissionLevel));
+        return  (userPermissionLevelMap.get(user.getId()).equals(permissionLevel));
     }
 
     public boolean userHasCommandPermission(User user, Command command) {
-        return (userPermissionLevelMap.get(user).equals(command.getCommandPermissionLevel()));
+        return userPermissionLevelMap.get(user.getId()).ordinal() >= command.getCommandPermissionLevel().ordinal();
     }
 
 

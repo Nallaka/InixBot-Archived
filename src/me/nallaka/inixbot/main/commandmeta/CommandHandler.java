@@ -2,6 +2,7 @@ package me.nallaka.inixbot.main.commandmeta;
 
 import me.nallaka.inixbot.main.BotMain;
 import me.nallaka.inixbot.main.permissionmeta.Permissions;
+import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
@@ -35,12 +36,14 @@ public class CommandHandler extends ListenerAdapter {
     }
 
     private void executeCommand(MessageReceivedEvent event, String[] commandArgs) {
-        if (isCommand(event, commandArgs) || isHelpCommand(event, commandArgs) && commandArgs.length == 1) {
-            commandRegistry.getCommand(commandArgs[0]).runCommand(event, commandArgs);
-            commandRegistry.getCommand(commandArgs[0]).executed(event, commandArgs);
-        } else if (isHelpCommand(event, commandArgs) && commandArgs.length >= 1) {
+        User user = event.getAuthor();
+        Command command = commandRegistry.getCommand(commandArgs[0]);
+        if (isCommand(event, commandArgs) || isHelpCommand(event, commandArgs) && commandArgs.length == 1 && permissions.userHasCommandPermission(user, command)) {
+            command.runCommand(event, commandArgs);
+            command.executed(event, commandArgs);
+        } else if (isHelpCommand(event, commandArgs) && permissions.userHasCommandPermission(user, command)) {
             commandRegistry.getCommand(commandArgs[1]).runHelpCommand(event, commandArgs);
-            commandRegistry.getCommand(commandArgs[0]).executed(event, commandArgs);
+            command.executed(event, commandArgs);
         }
     }
 
