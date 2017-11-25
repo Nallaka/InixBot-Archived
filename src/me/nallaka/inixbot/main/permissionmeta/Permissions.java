@@ -149,7 +149,7 @@ public class Permissions extends ListenerAdapter {
         }
     }
 
-    public void setUsersDefaultPermissioLevels(JDA jda) throws FileNotFoundException {
+    public void setUsersDefaultPermissionLevels(JDA jda) throws FileNotFoundException {
 
     }
 
