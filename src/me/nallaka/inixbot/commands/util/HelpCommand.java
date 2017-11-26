@@ -11,7 +11,7 @@ public class HelpCommand extends Command {
 
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
-        embeddedMessageBuilder.setTitle("Help")
+        embeddedMessageBuilder.setTitle("Help :gear:")
                 .setDescription("Do ``_help <command>`` for more information");
         embeddedMessageBuilder.addField("Fun Commands :boom:", "``8ball``, ``hello``,", true);
         embeddedMessageBuilder.addField("Music Commands :musical_note:", "``music``, ", true);
