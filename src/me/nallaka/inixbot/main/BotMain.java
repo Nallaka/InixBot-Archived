@@ -33,6 +33,7 @@ public class BotMain extends ListenerAdapter implements EventListener {
 
         Permissions permissions = new Permissions();
         permissions.loadUsersPermissionLevels();
+        permissions.setUsersDefaultPermissionLevels(jda);
 
         //Command Registry Setup
         CommandRegistry commandRegistry = new CommandRegistry();

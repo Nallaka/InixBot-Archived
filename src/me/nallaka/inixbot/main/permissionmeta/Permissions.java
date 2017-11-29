@@ -5,10 +5,7 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.*;
 
 public class Permissions extends ListenerAdapter {
@@ -83,10 +80,10 @@ public class Permissions extends ListenerAdapter {
             return 0;
         }
     };
-    Properties properties = new Properties();
-    InputStream input = null;
-    OutputStream output = null;
-    String filePath = "me/nallaka/inixbot/main/permissionmeta/permissions.properties";
+    private Properties properties = new Properties();
+    private InputStream input = null;
+    private OutputStream output = null;
+    private String filePath = "me/nallaka/inixbot/main/permissionmeta/permissions.properties";
 
     public void loadUsersPermissionLevels() {
         try {
@@ -150,12 +147,64 @@ public class Permissions extends ListenerAdapter {
     }
 
     public void setUsersDefaultPermissionLevels(JDA jda) throws FileNotFoundException {
+        try {
 
+            input = Permissions.class.getResourceAsStream(filePath);
+            output = new FileOutputStream("permissions.properties");
+
+            List<User> userList = jda.getUsers();
+
+            properties.load(input);
+
+            for (User u : userList) {
+                if (!properties.containsKey(u.getId())) {
+                    properties.setProperty(u.getId(), String.valueOf(PermissionLevel.DEFAULT));
+                    userPermissionLevelMap.put(u.getId(), PermissionLevel.DEFAULT);
+                }
+            }
+
+            properties.store(output, null);
+
+        } catch (IOException io) {
+            io.printStackTrace();
+        } finally {
+            if (output != null) {
+                try {
+                    output.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
     }
 
     public void changeUserPermissionLevel(User user, PermissionLevel permissionLevel) {
         userPermissionLevelMap.remove(user.getId());
         userPermissionLevelMap.put(user.getId(), permissionLevel);
+        try {
+            output = new FileOutputStream("permissions.properties");
+
+            if (properties.containsKey(user.getId())) {
+                properties.setProperty(user.getId(), String.valueOf(permissionLevel));
+                userPermissionLevelMap.remove(user.getId());
+                userPermissionLevelMap.put(user.getId(), permissionLevel);
+            }
+
+            properties.store(output, null);
+
+        } catch (IOException io) {
+            io.printStackTrace();
+        } finally {
+            if (output != null) {
+                try {
+                    output.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
     }
 
     public boolean userHasPermissionLevel(User user, PermissionLevel permissionLevel) {
@@ -165,6 +214,4 @@ public class Permissions extends ListenerAdapter {
     public boolean userHasCommandPermission(User user, Command command) {
         return userPermissionLevelMap.get(user.getId()).ordinal() >= command.getCommandPermissionLevel().ordinal();
     }
-
-
 }
