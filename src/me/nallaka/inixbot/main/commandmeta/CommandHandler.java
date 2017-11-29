@@ -7,7 +7,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class CommandHandler extends ListenerAdapter {
-    private CommandRegistry commandRegistry;
+    private CommandRegistry commandRegistry = new CommandRegistry();
     Permissions permissions;
 
     private boolean isCommand(MessageReceivedEvent event, String[] commandArgs) {
