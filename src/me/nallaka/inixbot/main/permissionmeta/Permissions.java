@@ -1,12 +1,20 @@
 package me.nallaka.inixbot.main.permissionmeta;
 
+import com.esotericsoftware.yamlbeans.YamlException;
+import com.esotericsoftware.yamlbeans.YamlReader;
+import com.esotericsoftware.yamlbeans.YamlWriter;
 import me.nallaka.inixbot.main.commandmeta.Command;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
-import java.io.*;
-import java.util.*;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class Permissions extends ListenerAdapter {
     private static Map<String, PermissionLevel> userPermissionLevelMap = new Map<String, PermissionLevel>() {
@@ -80,131 +88,42 @@ public class Permissions extends ListenerAdapter {
             return 0;
         }
     };
-    private Properties properties = new Properties();
-    private InputStream input = null;
-    private OutputStream output = null;
     private String filePath = "me/nallaka/inixbot/main/permissionmeta/permissions.properties";
+    private YamlReader yamlReader = new YamlReader(new FileReader("permissions.yml"));
+    private YamlWriter yamlWriter = new YamlWriter(new FileWriter("permissions.yml"));
+
+
+    public Permissions() throws IOException {
+    }
 
     public void loadUsersPermissionLevels() {
         try {
-            input = getClass().getClassLoader().getResourceAsStream(filePath);
-            if (input == null) {
-                System.out.println("Sorry, unable to find " + filePath);
-                return;
-            }
-
-            properties.load(input);
-
-            Enumeration<?> e = properties.propertyNames();
-            while (e.hasMoreElements()) {
-                String key = (String) e.nextElement();
-                String value = properties.getProperty(key);
-                PermissionLevel permissionLevel;
-                switch (value) {
-                    case "DEFAULT":
-                        permissionLevel = PermissionLevel.DEFAULT;
-                        break;
-                    case "LOW":
-                        permissionLevel = PermissionLevel.LOW;
-                        break;
-                    case "MEDIUM":
-                        permissionLevel = PermissionLevel.MEDIUM;
-                        break;
-                    case "HIGH":
-                        permissionLevel = PermissionLevel.HIGH;
-                        break;
-                    case "ADMIN":
-                        permissionLevel = PermissionLevel.ADMIN;
-                        break;
-                    case "OWNER":
-                        permissionLevel = PermissionLevel.OWNER;
-                        break;
-                    default:
-                        permissionLevel = PermissionLevel.DEFAULT;
-                        break;
-                }
-                userPermissionLevelMap.put(key, permissionLevel);
-            }
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            userPermissionLevelMap = (Map<String, PermissionLevel>) yamlReader.read();
+        } catch (YamlException e) {
+            e.printStackTrace();
         }
-
     }
 
     public void setUserDefaultPermissionLevel(User user) {
         if (!userPermissionLevelMap.containsKey(user.getId())) {
             userPermissionLevelMap.put(user.getId(), PermissionLevel.DEFAULT);
         }
+        updateYaml();
+
     }
 
-    public void setUsersDefaultPermissionLevels(JDA jda) throws FileNotFoundException {
-        try {
-
-            input = Permissions.class.getResourceAsStream(filePath);
-            output = new FileOutputStream("permissions.properties");
-
-            List<User> userList = jda.getUsers();
-
-            properties.load(input);
-
-            for (User u : userList) {
-                if (!properties.containsKey(u.getId())) {
-                    properties.setProperty(u.getId(), String.valueOf(PermissionLevel.DEFAULT));
-                    userPermissionLevelMap.put(u.getId(), PermissionLevel.DEFAULT);
-                }
-            }
-
-            properties.store(output, null);
-
-        } catch (IOException io) {
-            io.printStackTrace();
-        } finally {
-            if (output != null) {
-                try {
-                    output.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
+    public void setUsersDefaultPermissionLevels(JDA jda) {
+        List<User> userList = jda.getUsers();
+        for (User u : userList) {
+            userPermissionLevelMap.put(u.getId(), PermissionLevel.LOW);
         }
+        updateYaml();
     }
 
     public void changeUserPermissionLevel(User user, PermissionLevel permissionLevel) {
         userPermissionLevelMap.remove(user.getId());
         userPermissionLevelMap.put(user.getId(), permissionLevel);
-        try {
-            output = new FileOutputStream("permissions.properties");
-
-            if (properties.containsKey(user.getId())) {
-                properties.setProperty(user.getId(), String.valueOf(permissionLevel));
-                userPermissionLevelMap.remove(user.getId());
-                userPermissionLevelMap.put(user.getId(), permissionLevel);
-            }
-
-            properties.store(output, null);
-
-        } catch (IOException io) {
-            io.printStackTrace();
-        } finally {
-            if (output != null) {
-                try {
-                    output.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        }
+        updateYaml();
     }
 
     public boolean userHasPermissionLevel(User user, PermissionLevel permissionLevel) {
@@ -213,5 +132,14 @@ public class Permissions extends ListenerAdapter {
 
     public boolean userHasCommandPermission(User user, Command command) {
         return userPermissionLevelMap.get(user.getId()).ordinal() >= command.getCommandPermissionLevel().ordinal();
+    }
+
+    public void updateYaml() {
+        try {
+            yamlWriter.write(userPermissionLevelMap);
+            yamlWriter.close();
+        } catch (YamlException e) {
+            e.printStackTrace();
+        }
     }
 }
