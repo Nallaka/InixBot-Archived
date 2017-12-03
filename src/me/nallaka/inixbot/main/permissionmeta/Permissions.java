@@ -134,6 +134,8 @@ public class Permissions extends ListenerAdapter {
         return userPermissionLevelMap.get(user.getId()).ordinal() >= command.getCommandPermissionLevel().ordinal();
     }
 
+    //Test
+
     public void updateYaml() {
         try {
             yamlWriter.write(userPermissionLevelMap);
