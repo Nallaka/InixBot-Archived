@@ -2,6 +2,7 @@ package me.nallaka.inixbot.main;
 
 import me.nallaka.inixbot.main.commandmeta.CommandHandler;
 import me.nallaka.inixbot.main.commandmeta.CommandRegistry;
+import me.nallaka.inixbot.main.permissionmeta.Permissions;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -22,12 +23,17 @@ public class BotMain extends ListenerAdapter implements EventListener {
     public static void main(String[] args) throws LoginException, InterruptedException, RateLimitedException, IOException {
         //Bot Setup
         Properties properties = new Properties();
-        InputStream inputStream = BotMain.class.getClassLoader().getResourceAsStream("me/nallaka/inixbot/main/dataConfig.properties");
+        InputStream inputStream = BotMain.class.getClassLoader().getResourceAsStream("me/nallaka/inixbot/main/config.properties");
         properties.load(inputStream);
 
         String botToken = properties.getProperty("BOT_TOKEN");
         JDA jda = new JDABuilder(AccountType.BOT).setToken(botToken).buildBlocking();
         jda.addEventListener(new CommandHandler());
+
+
+        Permissions permissions = new Permissions();
+        permissions.loadUsersPermissionLevels();
+        permissions.setUsersDefaultPermissionLevels(jda);
 
         //Command Registry Setup
         CommandRegistry commandRegistry = new CommandRegistry();

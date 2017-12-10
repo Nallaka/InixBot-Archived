@@ -1,9 +1,14 @@
 package me.nallaka.inixbot.commands.fun;
 
 import me.nallaka.inixbot.main.commandmeta.Command;
+import me.nallaka.inixbot.main.permissionmeta.PermissionLevel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class WhatDoesThisTrinketDoCommand implements Command {
+public class WhatDoesThisTrinketDoCommand extends Command {
+    public WhatDoesThisTrinketDoCommand(PermissionLevel permissionLevel) {
+        super(permissionLevel);
+    }
+
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
         embeddedMessageBuilder.setTitle("AND THE TING GOES!").setDescription("SKRAAAAAAAAAAAAAAAAAAA");

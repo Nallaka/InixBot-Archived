@@ -8,14 +8,19 @@ import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import me.nallaka.inixbot.main.commandmeta.Command;
+import me.nallaka.inixbot.main.permissionmeta.PermissionLevel;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class MusicCommand implements Command {
+public class MusicCommand extends Command {
     private static final AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
     private static AudioTrack audioTrack;
+
+    public MusicCommand(PermissionLevel permissionLevel) {
+        super(permissionLevel);
+    }
 
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {

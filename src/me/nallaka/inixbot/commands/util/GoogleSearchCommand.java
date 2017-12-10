@@ -1,6 +1,7 @@
 package me.nallaka.inixbot.commands.util;
 
 import me.nallaka.inixbot.main.commandmeta.Command;
+import me.nallaka.inixbot.main.permissionmeta.PermissionLevel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
@@ -11,7 +12,10 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
-public class GoogleSearchCommand implements Command {
+public class GoogleSearchCommand extends Command {
+    public GoogleSearchCommand(PermissionLevel permissionLevel) {
+        super(permissionLevel);
+    }
 
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {

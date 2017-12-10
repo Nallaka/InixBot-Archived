@@ -1,9 +1,14 @@
 package me.nallaka.inixbot.commands.util;
 
 import me.nallaka.inixbot.main.commandmeta.Command;
+import me.nallaka.inixbot.main.permissionmeta.PermissionLevel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class CoinFlipCommand implements Command {
+public class CoinFlipCommand extends Command {
+    public CoinFlipCommand(PermissionLevel permissionLevel) {
+        super(permissionLevel);
+    }
+
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
         int random = (int) (Math.random()*1000);

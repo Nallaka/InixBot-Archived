@@ -2,9 +2,14 @@ package me.nallaka.inixbot.commands.util;
 
 import me.nallaka.inixbot.main.BotMain;
 import me.nallaka.inixbot.main.commandmeta.Command;
+import me.nallaka.inixbot.main.permissionmeta.PermissionLevel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class ChangeHeaderCommand implements Command {
+public class ChangeHeaderCommand extends Command {
+    public ChangeHeaderCommand(PermissionLevel permissionLevel) {
+        super(permissionLevel);
+    }
+
     @Override
     public void runCommand(MessageReceivedEvent event, String[] args) {
         if (args.length > 1) {
