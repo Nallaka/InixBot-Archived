@@ -1,3 +1,3 @@
-# Inix-Bot
+# Inix
 
-Base Bot template for different servers
+Inix, a Discord Bot built for Fun, Moderation, and League of Legends
